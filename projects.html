@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Projects - Angelica Lacaba</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background-color: #130000;
+            color: #fff;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        a.back {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        a.back:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            margin: 0.5rem 0 2rem;
+            font-size: 2.2rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background-color: #390202;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 15px;
+            pointer-events: none;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .project-card:hover::after {
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+        }
+
+        .project-image-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background-color: #250101;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(19, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-link-btn {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #fff;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            background-color: rgba(57, 2, 2, 0.7);
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .project-card:hover .project-link-btn {
+            transform: translateY(0);
+        }
+
+        .project-link-btn:hover {
+            background-color: #fff;
+            color: #130000;
+            border-color: #fff;
+        }
+
+        .project-link-icon {
+            display: inline-block;
+            margin-left: 0.5rem;
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            color: #fff;
+        }
+
+        .project-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.9rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .project-image-container {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.85rem;
+            }
+
+            h1 {
+                font-size: 1.65rem;
+                margin: 0.25rem 0 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .project-info {
+                padding: 1rem;
+            }
+
+            .project-title {
+                font-size: 1.1rem;
+            }
+
+            .project-description {
+                font-size: 0.85rem;
+            }
+
+            .project-link-btn {
+                padding: 0.7rem 1.1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (hover: none) {
+            .project-overlay {
+                opacity: 1;
+                background: linear-gradient(to top, rgba(19, 0, 0, 0.82), rgba(19, 0, 0, 0.35));
+                align-items: flex-end;
+                justify-content: flex-start;
+                padding: 0.85rem;
+            }
+
+            .project-link-btn {
+                transform: none;
+            }
+        }
+
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-reveal].in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" data-reveal data-delay="0">
+        <a href="index.html" class="back">&larr; Back to Home</a>
+        <h1>My Projects</h1>
+
+        <div class="projects-grid">
+
+            <div class="project-card" data-reveal data-delay="0"
+                onclick="window.open('https://angellacabs.github.io/iPhone15/', '_blank')">
+                <div class="project-image-container">
+                    <img class="project-image" src="img/projects/iphone15.jpg" alt="iPhone 15 Landing Page">
+                    <div class="project-overlay">
+                        <span class="project-link-btn">View Live <span class="project-link-icon">↗</span></span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">iPhone 15</h3>
+                    <p class="project-description">Landing page inspired by Apple's iPhone 15 marketing design and
+                        aesthetics</p>
+                </div>
+            </div>
+
+            <div class="project-card" data-reveal data-delay="80"
+                onclick="window.open('https://angellacabs.github.io/DragonBallz/', '_blank')">
+                <div class="project-image-container">
+                    <img class="project-image" src="img/projects/dbz.jpg" alt="Dragon Ball Z Themed Site">
+                    <div class="project-overlay">
+                        <span class="project-link-btn">View Live <span class="project-link-icon">↗</span></span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Dragon Ball Z</h3>
+                    <p class="project-description">Themed site featuring Dragon Ball Z characters and interactive UI
+                        elements</p>
+                </div>
+            </div>
+
+            <div class="project-card" data-reveal data-delay="160"
+                onclick="window.open('https://angellacabs.github.io/DespicableMe/', '_blank')">
+                <div class="project-image-container">
+                    <img class="project-image" src="img/projects/despicableme.jpg" alt="Despicable Me Themed Page">
+                    <div class="project-overlay">
+                        <span class="project-link-btn">View Live <span class="project-link-icon">↗</span></span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Despicable Me</h3>
+                    <p class="project-description">Playful page themed around Despicable Me and the Minions with fun
+                        animations</p>
+                </div>
+            </div>
+
+            <div class="project-card" data-reveal data-delay="0"
+                onclick="window.open('https://angellacabs.github.io/Batanes/', '_blank')">
+                <div class="project-image-container">
+                    <img class="project-image" src="img/projects/batanes.jpg" alt="Batanes Travel Site">
+                    <div class="project-overlay">
+                        <span class="project-link-btn">View Live <span class="project-link-icon">↗</span></span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Batanes</h3>
+                    <p class="project-description">Travel-inspired layout showcasing the natural beauty of Batanes,
+                        Philippines</p>
+                </div>
+            </div>
+
+            <div class="project-card" data-reveal data-delay="80"
+                onclick="window.open('https://learnexus.online/', '_blank')">
+                <div class="project-image-container">
+                    <img class="project-image" src="img/projects/learnexus.jpg" alt="Learnexus Learning Platform">
+                    <div class="project-overlay">
+                        <span class="project-link-btn">View Live <span class="project-link-icon">↗</span></span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Learnexus</h3>
+                    <p class="project-description">Online learning platform connecting students with educational
+                        resources</p>
+                </div>
+            </div>
+
+            <div class="project-card" data-reveal data-delay="160"
+                onclick="window.open('https://github.com/AngelLacabs/WaelTheCat', '_blank')">
+                <div class="project-image-container">
+                    <img class="project-image" src="img/projects/wael.jpg" alt="Wael The Cat Game">
+                    <div class="project-overlay">
+                        <span class="project-link-btn">View on GitHub <span class="project-link-icon">↗</span></span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Wael The Cat</h3>
+                    <p class="project-description">Cute platformer game featuring Wael the Cat on adventurous journeys
+                    </p>
+                </div>
+            </div>
+
+            <div class="project-card" data-reveal data-delay="0"
+                onclick="window.open('https://github.com/AngelLacabs/The-Kathelia-Suites', '_blank')">
+                <div class="project-image-container">
+                    <img class="project-image" src="img/projects/kathelia.jpg" alt="The Kathelia Suites">
+                    <div class="project-overlay">
+                        <span class="project-link-btn">View on GitHub <span class="project-link-icon">↗</span></span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">The Kathelia Suites</h3>
+                    <p class="project-description">Hotel booking and management system for The Kathelia Suites</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

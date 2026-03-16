@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tech Stack - Angelica Lacaba</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: #130000;
+      color: #fff;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      padding: 1.5rem;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: auto;
+    }
+
+    a.back {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      display: inline-block;
+    }
+
+    a.back:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      margin: 0.5rem 0 2rem;
+      font-size: 2.2rem;
+    }
+
+    h2 {
+      margin: 2.5rem 0 1rem;
+      font-size: 1.6rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 0.5rem;
+    }
+
+    h2:first-of-type {
+      margin-top: 1rem;
+    }
+
+    .tech-section {
+      margin-bottom: 2rem;
+    }
+
+    .tag-row,
+    .comma-list,
+    .section-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .tag,
+    .comma-item,
+    .section-list li {
+      color: #fff;
+      border: 1px solid #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      display: inline-block;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 1.9rem;
+        margin-bottom: 1.25rem;
+      }
+
+      h2 {
+        font-size: 1.35rem;
+        margin-top: 1.8rem;
+      }
+
+      .tag-row,
+      .comma-list,
+      .section-list {
+        gap: 0.55rem;
+        margin-bottom: 1.3rem;
+      }
+
+      .tag,
+      .comma-item,
+      .section-list li {
+        font-size: 0.9rem;
+        padding: 0.42rem 0.75rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 0.85rem;
+      }
+
+      h1 {
+        font-size: 1.65rem;
+        margin: 0.25rem 0 1rem;
+      }
+
+      h2 {
+        font-size: 1.18rem;
+        margin-top: 1.35rem;
+      }
+
+      .tech-section {
+        margin-bottom: 1.2rem;
+      }
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-reveal].in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" data-reveal data-delay="0">
+    <a href="index.html" class="back">&larr; Back to Home</a>
+    <h1>Tech Stack</h1>
+
+    <div class="tech-section" data-reveal data-delay="0">
+      <h2>Frontend</h2>
+      <div class="tag-row">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">React</span>
+        <span class="tag">Bootstrap</span>
+        <span class="tag">Tailwind CSS</span>
+      </div>
+    </div>
+
+    <div class="tech-section" data-reveal data-delay="0">
+      <h2>Backend</h2>
+      <div class="tag-row">
+        <span class="tag">PHP</span>
+        <span class="tag">Python</span>
+        <span class="tag">Java</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">REST API</span>
+      </div>
+    </div>
+
+    <div class="tech-section" data-reveal data-delay="0">
+      <h2>DevOps</h2>
+      <div class="tag-row">
+        <span class="tag">Git</span>
+        <span class="tag">GitHub</span>
+        <span class="tag">GitHub Actions</span>
+      </div>
+    </div>
+
+    <div class="tech-section" data-reveal data-delay="0">
+      <h2>Languages</h2>
+      <div class="comma-list">
+        <span class="comma-item">JavaScript</span>
+        <span class="comma-item">Python</span>
+        <span class="comma-item">Java</span>
+        <span class="comma-item">C</span>
+        <span class="comma-item">C++</span>
+        <span class="comma-item">PHP</span>
+        <span class="comma-item">SQL</span>
+      </div>
+    </div>
+
+    <div class="tech-section" data-reveal data-delay="0">
+      <h2>AI &amp; Machine Learning</h2>
+      <ul class="section-list">
+        <li>Machine Learning (Supervised &amp; Unsupervised)</li>
+        <li>Deep Learning (Neural Networks, CNNs, RNNs)</li>
+        <li>Natural Language Processing (NLP)</li>
+        <li>TensorFlow</li>
+        <li>PyTorch</li>
+        <li>MediaPipe</li>
+      </ul>
+    </div>
+
+    <div class="tech-section" data-reveal data-delay="0">
+      <h2>Developer Tools</h2>
+      <ul class="section-list">
+        <li>Git</li>
+        <li>GitHub</li>
+        <li>GitLab</li>
+        <li>VS Code</li>
+        <li>Figma</li>
+        <li>Adobe</li>
+        <li>Anaconda</li>
+        <li>Jupyter Notebook</li>
+      </ul>
+    </div>
+  </div>
+   <script src="main.js"></script>
+</body>
+
+</html>
