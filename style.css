@@ -290,6 +290,10 @@ body {
     object-fit: cover;
 }
 
+.cert-clickable {
+    cursor: zoom-in;
+}
+
 @media (max-width: 991.98px) {
     .cert-card {
         padding: 1.25rem !important;

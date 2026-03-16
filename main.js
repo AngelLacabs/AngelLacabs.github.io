@@ -17,11 +17,15 @@
     const img2 = document.getElementById("galleryImg2");
     const prev = document.getElementById("galleryPrev");
     const next = document.getElementById("galleryNext");
+    const certImage = document.getElementById("certImage");
+    const galleryRow = document.querySelector(".gallery-row");
 
     if (!img1 || !img2 || !prev || !next) return;
 
     let startIndex = 0;
     let lightboxIndex = 0;
+    let isCertOnlyMode = false;
+    const swipeThreshold = 45;
 
     function render() {
         const secondIndex = (startIndex + 1) % images.length;
@@ -68,7 +72,17 @@
         lbCounter.textContent = (lightboxIndex + 1) + " / " + images.length;
     }
 
-    function openLightbox(index) {
+    function setLightboxMode(certOnly) {
+        isCertOnlyMode = certOnly;
+        const navDisplay = certOnly ? "none" : "";
+        lbPrev.style.display = navDisplay;
+        lbNext.style.display = navDisplay;
+        lbCounter.style.display = certOnly ? "none" : "";
+    }
+
+    function openLightbox(index, options) {
+        const settings = options || {};
+        setLightboxMode(Boolean(settings.certOnly));
         lightboxIndex = (index + images.length) % images.length;
         updateLightbox();
         lightbox.classList.add("open");
@@ -77,14 +91,42 @@
     }
 
     function closeLightbox() {
+        setLightboxMode(false);
         lightbox.classList.remove("open");
         lightbox.setAttribute("aria-hidden", "true");
         document.body.classList.remove("lightbox-open");
     }
 
     function stepLightbox(delta) {
+        if (isCertOnlyMode) return;
         lightboxIndex = (lightboxIndex + delta + images.length) % images.length;
         updateLightbox();
+    }
+
+    function bindSwipe(target, onSwipeLeft, onSwipeRight, shouldHandle) {
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        target.addEventListener("touchstart", function (e) {
+            const touch = e.changedTouches && e.changedTouches[0];
+            if (!touch) return;
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+        }, { passive: true });
+
+        target.addEventListener("touchend", function (e) {
+            if (shouldHandle && !shouldHandle()) return;
+            const touch = e.changedTouches && e.changedTouches[0];
+            if (!touch) return;
+
+            const dx = touch.clientX - touchStartX;
+            const dy = touch.clientY - touchStartY;
+            const horizontalSwipe = Math.abs(dx) > swipeThreshold && Math.abs(dx) > Math.abs(dy);
+            if (!horizontalSwipe) return;
+
+            if (dx < 0) onSwipeLeft();
+            if (dx > 0) onSwipeRight();
+        }, { passive: true });
     }
 
     img1.addEventListener("click", function () {
@@ -95,9 +137,47 @@
         openLightbox((startIndex + 1) % images.length);
     });
 
+    if (certImage) {
+        const certIndex = images.findIndex(function (item) {
+            return item.src === "img/cert.png";
+        });
+
+        certImage.addEventListener("click", function () {
+            openLightbox(certIndex >= 0 ? certIndex : 0, { certOnly: true });
+        });
+
+        certImage.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                openLightbox(certIndex >= 0 ? certIndex : 0, { certOnly: true });
+            }
+        });
+    }
+
     lbClose.addEventListener("click", closeLightbox);
     lbPrev.addEventListener("click", function () { stepLightbox(-1); });
     lbNext.addEventListener("click", function () { stepLightbox(1); });
+
+    if (galleryRow) {
+        bindSwipe(
+            galleryRow,
+            function () {
+                startIndex = (startIndex + 1) % images.length;
+                render();
+            },
+            function () {
+                startIndex = (startIndex - 1 + images.length) % images.length;
+                render();
+            }
+        );
+    }
+
+    bindSwipe(
+        lightbox,
+        function () { stepLightbox(1); },
+        function () { stepLightbox(-1); },
+        function () { return lightbox.classList.contains("open") && !isCertOnlyMode; }
+    );
 
     lightbox.addEventListener("click", function (e) {
         if (e.target === lightbox) closeLightbox();
@@ -106,6 +186,7 @@
     document.addEventListener("keydown", function (e) {
         if (!lightbox.classList.contains("open")) return;
         if (e.key === "Escape") closeLightbox();
+        if (isCertOnlyMode) return;
         if (e.key === "ArrowLeft") stepLightbox(-1);
         if (e.key === "ArrowRight") stepLightbox(1);
     });
