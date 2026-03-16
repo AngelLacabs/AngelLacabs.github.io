@@ -135,7 +135,7 @@ body {
 @media (max-width: 767.98px) {
     .about-card p {
         line-height: 2 !important;
-        margin-bottom: 3rem;
+        margin-bottom: 1.8rem;
     }
 }
 
@@ -653,5 +653,10 @@ body.lightbox-open {
         max-width: calc(100vw - 1.5rem);
         white-space: normal;
         text-align: center;
+    }
+
+    .gallery-lightbox-nav,
+    .gallery-lightbox-hint {
+        display: none !important;
     }
 }
