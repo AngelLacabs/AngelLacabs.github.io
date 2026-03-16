@@ -1,16 +1,19 @@
-/* ============================================================
-   BASE
-   ============================================================ */
+
 body {
     background-color: #130000;
     font-family: 'Poppins', sans-serif;
 }
 
-/* ============================================================
-   ANIMATIONS
-   ============================================================ */
+:root {
+    --site-bg: #130000;
+    --card-glass-bg: rgba(32, 8, 8, 0.62);
+    --card-glass-border: rgba(255, 255, 255, 0.14);
+    --card-glass-highlight: rgba(255, 255, 255, 0.04);
+    --text-primary: rgba(255, 255, 255, 0.9);
+    --text-secondary: rgba(255, 255, 255, 0.78);
+}
 
-/* Elements start hidden; JS adds .in-view when scrolled into viewport */
+
 [data-reveal] {
     opacity: 0;
     transform: translateY(36px);
@@ -23,11 +26,8 @@ body {
     transform: translateY(0);
 }
 
-/* ============================================================
-   PROFILE CARD
-   ============================================================ */
+
 .profile-card {
-    background-color: #390202;
     margin: 0.5rem;
     border-radius: 15px;
     min-height: 150px;
@@ -44,7 +44,7 @@ body {
 }
 
 .profile-info {
-    color: #fff;
+    color: var(--text-primary);
     min-width: 100px;
 }
 
@@ -85,14 +85,10 @@ body {
     }
 }
 
-/* ============================================================
-   CONTENT CARD (About + Tech Stack)
-   ============================================================ */
 .content-card {
-    background-color: #390202;
     border-radius: 15px;
     min-height: 200px;
-    color: #fff;
+    color: var(--text-primary);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -114,17 +110,33 @@ body {
 .cert-card h2,
 .social-card h2,
 .gallery-card h2 {
-    color: #fff;
+    color: var(--text-primary);
     font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
 .content-card h3 {
-    color: #fff;
+    color: var(--text-primary);
 }
 
 .content-card p {
-    color: #fff;
+    color: var(--text-secondary);
     line-height: 1.5;
+}
+
+.about-card p {
+    line-height: 1.75 !important;
+    margin-bottom: 1.25rem;
+}
+
+.about-card p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 767.98px) {
+    .about-card p {
+        line-height: 2 !important;
+        margin-bottom: 3rem;
+    }
 }
 
 .content-card a:hover {
@@ -135,7 +147,7 @@ body {
     display: inline-flex;
     align-items: center;
     font-size: 0.9rem;
-    color: #fff;
+    color: var(--text-secondary);
     white-space: nowrap;
     background: transparent;
     border: none;
@@ -154,13 +166,9 @@ body {
     }
 }
 
-/* ============================================================
-   PROJECTS CARD
-   ============================================================ */
 .projects-card {
-    background-color: #390202;
     border-radius: 15px;
-    color: #fff;
+    color: var(--text-primary);
 }
 
 .projects-card .row.g-4 {
@@ -177,11 +185,12 @@ body {
     font-weight: 600;
     font-size: 1rem;
     margin-bottom: 0.25rem;
+    color: var(--text-primary);
 }
 
 .project-description {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--text-secondary);
 }
 
 .project-link {
@@ -189,9 +198,9 @@ body {
     margin-top: 0.3rem;
     padding: 0.2rem 0.4rem;
     border-radius: 3px;
-    background-color: #190101;
+    background-color: rgba(29, 7, 7, 0.78);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
+    color: var(--text-primary);
     font-size: 0.8rem;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     text-decoration: none;
@@ -214,13 +223,32 @@ body {
     }
 }
 
-/* ============================================================
-   CERTIFICATES CARD
-   ============================================================ */
 .cert-card {
-    background-color: #390202;
     border-radius: 15px;
-    color: #fff;
+    color: var(--text-primary);
+}
+
+.profile-card .text-white,
+.content-card .text-white,
+.projects-card .text-white,
+.cert-card .text-white,
+.social-card .text-white,
+.gallery-card .text-white {
+    color: var(--text-primary) !important;
+}
+
+.profile-card,
+.content-card,
+.projects-card,
+.cert-card,
+.social-card,
+.gallery-card {
+    background: var(--card-glass-bg);
+    border: 1px solid var(--card-glass-border);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 var(--card-glass-highlight);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .cert-title {
@@ -250,7 +278,7 @@ body {
     height: 18px;
     border-radius: 50%;
     object-fit: contain;
-    background: #390202;
+    background: rgba(29, 7, 7, 0.86);
     padding: 1px;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -276,11 +304,7 @@ body {
     }
 }
 
-/* ============================================================
-   SOCIAL CARD
-   ============================================================ */
 .social-card {
-    background-color: #390202;
     border-radius: 15px;
     color: #fff;
     overflow: hidden;
@@ -400,11 +424,7 @@ body {
     }
 }
 
-/* ============================================================
-   GALLERY CARD
-   ============================================================ */
 .gallery-card {
-    background-color: #390202;
     border-radius: 15px;
     color: #fff;
     overflow: hidden;

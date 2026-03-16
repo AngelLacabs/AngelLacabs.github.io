@@ -11,7 +11,7 @@
         body {
             margin: 0;
             background-color: #130000;
-            color: #fff;
+            color: rgba(255, 255, 255, 0.9);
             min-height: 100vh;
             font-family: 'Poppins', sans-serif;
             padding: 1.5rem;
@@ -23,7 +23,7 @@
         }
 
         a.back {
-            color: #fff;
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             font-weight: 600;
             margin-bottom: 2rem;
@@ -47,18 +47,21 @@
         }
 
         .project-card {
-            background-color: #390202;
+            background: rgba(32, 8, 8, 0.62);
             border-radius: 15px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
         }
 
         .project-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.2);
         }
 
         .project-card::after {
@@ -79,7 +82,7 @@
             width: 100%;
             height: 200px;
             overflow: hidden;
-            background-color: #250101;
+            background-color: #1b0505;
         }
 
         .project-image {
@@ -96,7 +99,7 @@
         .project-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(19, 0, 0, 0.85);
+            background: rgba(19, 0, 0, 0.8);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -110,14 +113,14 @@
         }
 
         .project-link-btn {
-            color: #fff;
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             padding: 0.8rem 1.5rem;
-            border: 2px solid #fff;
+            border: 2px solid rgba(255, 255, 255, 0.86);
             border-radius: 30px;
             font-size: 0.9rem;
             font-weight: 500;
-            background-color: rgba(57, 2, 2, 0.7);
+            background-color: rgba(29, 7, 7, 0.78);
             transform: translateY(10px);
             transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
         }
@@ -127,9 +130,9 @@
         }
 
         .project-link-btn:hover {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.92);
             color: #130000;
-            border-color: #fff;
+            border-color: rgba(255, 255, 255, 0.92);
         }
 
         .project-link-icon {
@@ -147,12 +150,12 @@
             font-size: 1.3rem;
             font-weight: 600;
             margin: 0 0 0.5rem;
-            color: #fff;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .project-description {
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.76);
             margin: 0;
             line-height: 1.5;
         }
